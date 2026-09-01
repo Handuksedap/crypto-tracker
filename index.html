@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crypto Tracker ΓÇö Realtime</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">Γùå</span>
+      <span>CryptoTracker</span>
+    </div>
+    <div class="global-stats" id="global-stats">
+      <div class="stat"><span class="label">Market Cap</span><span class="value" id="g-mc">ΓÇö</span></div>
+      <div class="stat"><span class="label">24h Vol</span><span class="value" id="g-vol">ΓÇö</span></div>
+      <div class="stat"><span class="label">BTC Dominance</span><span class="value" id="g-btc">ΓÇö</span></div>
+    </div>
+    <div class="status">
+      <span class="dot" id="status-dot"></span>
+      <span id="status-text">connectingΓÇª</span>
+      <span class="clock" id="live-clock">--:--:--</span>
+      <span class="next-refresh" id="next-refresh">next 30s</span>
+    </div>
+    <div class="currency-toggle" id="currency-toggle">
+      <button data-cur="usd" class="active">USD</button>
+      <button data-cur="idr">IDR</button>
+    </div>
+  </header>
+
+  <section class="controls">
+    <div class="search-wrap">
+      <input type="text" id="search" placeholder="Cari koin (cth: btc, pepe, doge)..." autocomplete="off" />
+    </div>
+    <div class="filters">
+      <select id="filter-category">
+        <option value="all">Semua Kategori</option>
+        <option value="meme">Memecoin ≡ƒÉ╕</option>
+        <option value="top10">Top 10</option>
+        <option value="gainers">Top Gainers 24h ≡ƒÜÇ</option>
+        <option value="losers">Top Losers 24h ≡ƒôë</option>
+        <option value="strong-buy">Sinyal Beli ≡ƒƒó</option>
+      </select>
+      <select id="filter-sort">
+        <option value="market_cap_desc">Market Cap</option>
+        <option value="volume_desc">Volume 24h</option>
+        <option value="price_change_24h_desc">% 24h</option>
+        <option value="price_change_7d_desc">% 7d</option>
+        <option value="name_asc">Nama A-Z</option>
+      </select>
+      <button id="refresh" class="btn-secondary">Γå╗ Refresh</button>
+    </div>
+  </section>
+
+  <main class="grid-wrap">
+    <div class="grid-header">
+      <div>#</div>
+      <div>Coin</div>
+      <div class="num-col">Harga</div>
+      <div class="num-col">1h</div>
+      <div class="num-col">24h</div>
+      <div class="num-col">7d</div>
+      <div class="num-col">Market Cap</div>
+      <div class="num-col">Vol 24h</div>
+      <div>Analisa</div>
+      <div>7d Chart</div>
+    </div>
+    <div id="coins-list" class="coins-list">
+      <div class="loading">Memuat data pasarΓÇª</div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Data dari CoinGecko ΓÇó Update setiap 30 detik ΓÇó ┬⌐ <span id="year"></span></p>
+  </footer>
+
+  <div id="modal" class="modal" hidden>
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close">├ù</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <div id="easter-egg" class="easter-egg" hidden>
+    <div class="egg-content">
+      <div class="egg-title">Γ£¿ N E O Γ£¿</div>
+      <div class="egg-sub">cie ngetik nama aku</div>
+      <div class="egg-particles"></div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
