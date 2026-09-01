@@ -271,7 +271,7 @@ async function fetchCoins(silent = false) {
   if (!silent) setStatus('fetching…');
   state.loading = true;
   try {
-    const r = await fetch('/api/coins?limit=200');
+    const r = await fetch(API_BASE + '/api/coins?limit=200');
     const cacheSource = r.headers.get('X-Cache') || 'unknown';
     if (!r.ok) {
       const body = await r.json().catch(() => ({}));
@@ -306,7 +306,7 @@ async function fetchCoins(silent = false) {
 
 async function fetchAnalysis() {
   try {
-    const r = await fetch('/api/analyze');
+    const r = await fetch(API_BASE + '/api/analyze');
     if (!r.ok) return;
     const data = await r.json();
     state.analysis = {};
@@ -320,7 +320,7 @@ async function fetchAnalysis() {
 
 async function fetchGlobal() {
   try {
-    const r = await fetch('/api/global');
+    const r = await fetch(API_BASE + '/api/global');
     if (!r.ok) return;
     const json = await r.json();
     const d = json.data;
@@ -342,7 +342,7 @@ async function fetchGlobal() {
 
 async function fetchRate() {
   try {
-    const r = await fetch('/api/rate');
+    const r = await fetch(API_BASE + '/api/rate');
     const d = await r.json();
     state.rate = d.usd_to_idr;
   } catch (e) { /* silent */ }
@@ -355,8 +355,8 @@ async function openModal(id) {
   body.innerHTML = '<div class="loading">Memuat detail…</div>';
   try {
     const [coinR, anaR] = await Promise.all([
-      fetch('/api/coin/' + id),
-      fetch('/api/analyze/' + id).catch(() => null),
+      fetch(API_BASE + '/api/coin/' + id),
+      fetch(API_BASE + '/api/analyze/' + id).catch(() => null),
     ]);
     const d = await coinR.json();
     const a = anaR ? await anaR.json() : null;
