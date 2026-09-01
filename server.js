@@ -4,6 +4,22 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use((req, res, next) => {
+  const allowed = [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'https://handuksedap.github.io',
+  ];
+  const origin = req.headers.origin;
+  if (allowed.includes(origin) || !origin) {
+    res.set('Access-Control-Allow-Origin', origin || '*');
+  }
+  res.set('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.set('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') return res.status(204).end();
+  next();
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 const COINGECKO = 'https://api.coingecko.com/api/v3';
